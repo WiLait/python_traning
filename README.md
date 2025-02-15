@@ -1,1 +1,1 @@
-# python_traning
+#PaCharm training
