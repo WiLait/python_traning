@@ -26,18 +26,20 @@ class TestAddGroup(unittest.TestCase):
 
     def test_add_group(self):
         wd = self.wd
-        # open home page
-        wd.get("http://localhost/addressbook/")
-        # login
-        wd.find_element(By.NAME, "user").click()
-        wd.find_element(By.NAME, "user").clear()
-        wd.find_element(By.NAME, "user").send_keys("admin")
-        wd.find_element(By.NAME, "pass").click()
-        wd.find_element(By.NAME, "pass").clear()
-        wd.find_element(By.NAME, "pass").send_keys("secret")
-        wd.find_element(By.XPATH, "//input[@value='Login']").click()
-        # open groups page
-        wd.find_element(By.LINK_TEXT, "groups").click()
+        self.open_home_page(wd)
+        self.login(wd)
+        self.open_group_page(wd)
+        self.create_group(wd)
+        self.return_to_group_page(wd)
+        self.logout(wd)
+
+    def logout(self, wd):
+        wd.find_element(By.LINK_TEXT, "Logout").click()
+
+    def return_to_group_page(self, wd):
+        wd.find_element(By.LINK_TEXT, "group page").click()
+
+    def create_group(self, wd):
         # init group creation
         wd.find_element(By.NAME, "new").click()
         # fill group firm
@@ -52,10 +54,21 @@ class TestAddGroup(unittest.TestCase):
         wd.find_element(By.NAME, "group_footer").send_keys("dhryftd")
         # submit group creation
         wd.find_element(By.NAME, "submit").click()
-        # return to group page
-        wd.find_element(By.LINK_TEXT, "group page").click()
-        # logout
-        wd.find_element(By.LINK_TEXT, "Logout").click()
+
+    def open_group_page(self, wd):
+        wd.find_element(By.LINK_TEXT, "groups").click()
+
+    def login(self, wd):
+        wd.find_element(By.NAME, "user").click()
+        wd.find_element(By.NAME, "user").clear()
+        wd.find_element(By.NAME, "user").send_keys("admin")
+        wd.find_element(By.NAME, "pass").click()
+        wd.find_element(By.NAME, "pass").clear()
+        wd.find_element(By.NAME, "pass").send_keys("secret")
+        wd.find_element(By.XPATH, "//input[@value='Login']").click()
+
+    def open_home_page(self, wd):
+        wd.get("http://localhost/addressbook/")
 
     def is_element_present(self, how, what):
         try:
