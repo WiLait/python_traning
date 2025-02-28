@@ -17,46 +17,46 @@ def is_alert_present(wd):
         return False
 class TestAddGroup(unittest.TestCase):
     def setUp(self):
-        self.wd = WebDriver()
-        self.wd.implicitly_wait(60)
+        self.dw = WebDriver()
+        self.dw.implicitly_wait(60)
     
     def test_add_group(self):
-        wd = self.wd
-        wd.get("http://localhost/addressbook/")
-        wd.find_element(By.NAME,"user").click()
-        wd.find_element(By.NAME,"user").clear()
-        wd.find_element(By.NAME,"user").send_keys("admin")
-        wd.find_element(By.NAME,"pass").click()
-        wd.find_element(By.NAME,"pass").clear()
-        wd.find_element(By.NAME,"pass").send_keys("secret")
-        wd.find_element(By.XPATH,"//input[@value='Login']").click()
-        wd.find_element(By.LINK_TEXT,"groups").click()
-        wd.find_element(By.NAME,"new").click()
-        wd.find_element(By.NAME,"group_name").click()
-        wd.find_element(By.NAME,"group_name").clear()
-        wd.find_element(By.NAME,"group_name").send_keys("sai")
-        wd.find_element(By.NAME,"group_header").click()
-        wd.find_element(By.NAME,"group_header").clear()
-        wd.find_element(By.NAME,"group_header").send_keys("ydfghd")
-        wd.find_element(By.NAME,"group_footer").click()
-        wd.find_element(By.NAME,"group_footer").clear()
-        wd.find_element(By.NAME,"group_footer").send_keys("dhryftd")
-        wd.find_element(By.NAME,"submit").click()
-        wd.find_element(By.LINK_TEXT,"group page").click()
-        wd.find_element(By.LINK_TEXT,"Logout").click()
+        dw = self.dw
+        dw.get("http://localhost/addressbook/")
+        dw.find_element(By.NAME,"user").click()
+        dw.find_element(By.NAME,"user").clear()
+        dw.find_element(By.NAME,"user").send_keys("admin")
+        dw.find_element(By.NAME,"pass").click()
+        dw.find_element(By.NAME,"pass").clear()
+        dw.find_element(By.NAME,"pass").send_keys("secret")
+        dw.find_element(By.XPATH,"//input[@value='Login']").click()
+        dw.find_element(By.LINK_TEXT,"groups").click()
+        dw.find_element(By.NAME,"new").click()
+        dw.find_element(By.NAME,"group_name").click()
+        dw.find_element(By.NAME,"group_name").clear()
+        dw.find_element(By.NAME,"group_name").send_keys("sai")
+        dw.find_element(By.NAME,"group_header").click()
+        dw.find_element(By.NAME,"group_header").clear()
+        dw.find_element(By.NAME,"group_header").send_keys("ydfghd")
+        dw.find_element(By.NAME,"group_footer").click()
+        dw.find_element(By.NAME,"group_footer").clear()
+        dw.find_element(By.NAME,"group_footer").send_keys("dhryftd")
+        dw.find_element(By.NAME,"submit").click()
+        dw.find_element(By.LINK_TEXT,"group page").click()
+        dw.find_element(By.LINK_TEXT,"Logout").click()
     
     def is_element_present(self, how, what):
-        try: self.wd.find_element(by=how, value=what)
+        try: self.dw.find_element(by=how, value=what)
         except NoSuchElementException as e: return False
         return True
     
     def is_alert_present(self):
-        try: self.wd.switch_to_alert()
+        try: self.dw.switch_to_alert()
         except NoAlertPresentException as e: return False
         return True
     
     def tearDown(self):
-        self.wd.quit()
+        self.dw.quit()
 
 if __name__ == "__main__":
     unittest.main()
