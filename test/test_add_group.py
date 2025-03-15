@@ -12,14 +12,14 @@ def app(request):
     return fixture
 
 def test_add_group(app):
-        app.login("admin", "secret")
-        app.create_group(Group(name="sai", header="ydfghd", footer="dhryftd"))
-        app.logout()
+        app.session.login("admin", "secret")
+        app.group.create(Group(name="sai", header="ydfghd", footer="dhryftd"))
+        app.session.logout()
 
 def test_add_empty_group(app):
-        app.login("admin", "secret")
-        app.create_group(Group(name="", header="", footer=""))
-        app.logout()
+        app.session.login("admin", "secret")
+        app.group.create(Group(name="", header="", footer=""))
+        app.session.logout()
 
 if __name__ == "__main__":
     unittest.main()
